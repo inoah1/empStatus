@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.noah.capstone.dao.model.Status;
-import com.noah.capstone.dao.repository.StatusRepository;
+import com.noah.capstone.dao.Status;
+import com.noah.capstone.repository.StatusRepository;
 import com.noah.capstone.util.EmployeeStatusConstants;
 
 @Service

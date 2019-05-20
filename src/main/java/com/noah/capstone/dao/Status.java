@@ -1,4 +1,4 @@
-package com.noah.capstone.dao.model;
+package com.noah.capstone.dao;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

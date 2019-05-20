@@ -1,5 +1,8 @@
 package com.noah.capstone.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.noah.capstone.dao.model.Status;
+import com.noah.capstone.dao.Status;
+import com.noah.capstone.dto.EmpStatusDto;
 import com.noah.capstone.service.StatusService;
 
 @RestController
@@ -31,24 +35,38 @@ public class EmployeeStatusController {
 	}
 	
 	@GetMapping(path = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Iterable<Status> getEmployeeStatus() {
+	public @ResponseBody Iterable<EmpStatusDto> getEmployeeStatus() {
 		logger.info("Get all employee status");
-		return service.getEmployeeStatus();		
+		Iterable<Status> dbList = service.getEmployeeStatus();
+		List<EmpStatusDto> returnList = new ArrayList<>();
+		
+		for (Status status : dbList) {
+			EmpStatusDto returnDto = new EmpStatusDto(status);			
+			returnList.add(returnDto);
+		}
+		
+		return returnList;
 	}
 	
 	@GetMapping(path = "/getstatus/{employeeId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Status getEmpStatus(@PathVariable("employeeId") int employeeId) {
-		return service.getEmpStatus(employeeId);
+	public EmpStatusDto getEmpStatus(@PathVariable("employeeId") int employeeId) {
+		Status status = service.getEmpStatus(employeeId);
+		EmpStatusDto returnDto = new EmpStatusDto(status);
+		return returnDto;
 	}
 	
 	@PutMapping(path = "/updatestatus/{employeeId}/{newStatus}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Status updateStatus(@PathVariable("employeeId") int employeeId, @PathVariable("newStatus") String newStatus) {
-		return service.updateStatus(employeeId, newStatus);
+	public EmpStatusDto updateStatus(@PathVariable("employeeId") int employeeId, @PathVariable("newStatus") String newStatus) {
+		Status status = service.updateStatus(employeeId, newStatus);
+		EmpStatusDto returnDto = new EmpStatusDto(status);
+		return returnDto;
 	}
 	
 	@DeleteMapping(path = "/delete/{employeeId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Status deleteEmp(@PathVariable("employeeId") int employeeId) {
-		return service.deleteEmp(employeeId);
+	public EmpStatusDto deleteEmp(@PathVariable("employeeId") int employeeId) {
+		Status status =  service.deleteEmp(employeeId);
+		EmpStatusDto returnDto = new EmpStatusDto(status);
+		return returnDto;
 	}
 	
 	@GetMapping(path = "/add", produces = MediaType.TEXT_HTML_VALUE)
