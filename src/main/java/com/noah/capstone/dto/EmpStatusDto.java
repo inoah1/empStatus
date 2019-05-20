@@ -11,7 +11,6 @@ public class EmpStatusDto {
 	
 	public EmpStatusDto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public EmpStatusDto(int employeeId, String empStatus) {
