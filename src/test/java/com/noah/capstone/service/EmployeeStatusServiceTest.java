@@ -1,4 +1,4 @@
-package com.noah.capstone.controller;
+package com.noah.capstone.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -9,15 +9,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
 import com.noah.capstone.dao.Status;
 import com.noah.capstone.repository.StatusRepository;
-import com.noah.capstone.service.StatusService;
 
 @RunWith(MockitoJUnitRunner.class)
-@WebMvcTest(EmployeeStatusController.class)
-public class EmployeeStatusControllerTest {
+public class EmployeeStatusServiceTest {
 	@Mock
 	private StatusRepository repository;
 	
