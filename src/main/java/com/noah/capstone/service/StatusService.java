@@ -16,7 +16,7 @@ public class StatusService {
 	
 	@Autowired
 	private StatusRepository repository;
-	
+
 	public Iterable<Status> getEmployeeStatus() {
 		logger.info("Retrieving all employee status");
 		Iterable<Status> result = repository.findAll();

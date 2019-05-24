@@ -20,7 +20,9 @@ public class EmpStatusDto {
 	}
 	
 	public EmpStatusDto(Status status) {
-		BeanUtils.copyProperties(status, this);
+		if(status != null) {
+			BeanUtils.copyProperties(status, this);
+		}
 	}
 
 	public int getEmployeeId() {
